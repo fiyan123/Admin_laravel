@@ -13,6 +13,16 @@
                         <form action="{{ route('siswa.store') }}" method="post">
                             @csrf
                             <div class="mb-3">
+                                <label class="form-label">Nama</label>
+                                <input type="text" class="form-control  @error('nama') is-invalid @enderror"
+                                    name="nama">
+                                @error('nama')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
                                 <label class="form-label">Nomor Induk Siswa</label>
                                 <input type="text" class="form-control  @error('nis') is-invalid @enderror"
                                     name="nis">
@@ -23,28 +33,71 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Nama</label>
-                                <input type="text" class="form-control  @error('nama_siswa') is-invalid @enderror"
-                                    name="nama_siswa">
-                                @error('nama_siswa')
+                                <label class="form-label">Jenis Kelamin</label>
+                                <div class="form-check">
+                                    <input class="form-check-input @error('jenis_kelamin') is-invalid @enderror"
+                                        type="radio" name="jenis_kelamin" value="Laki-laki">
+                                    <label class="form-check-label">
+                                        Laki-laki
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input @error('jenis_kelamin') is-invalid @enderror"
+                                        type="radio" name="jenis_kelamin" value="Perempuan">
+                                    <label class="form-check-label">
+                                        Perempuan
+                                    </label>
+                                </div>
+                                @error('jenis_kelamin')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                <div class="mb-3">
-                                    <label class="form-label">Alamat</label>
-                                    <textarea class="form-control  @error('alamat_siswa') is-invalid @enderror" name="alamat_siswa"></textarea>
-                                    @error('alamat_siswa')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Agama</label>
+                                <select class="form-control @error('jenis_kelamin') is-invalid @enderror" name="agama">
+                                    <option selected>Pilih Salah Satu</option>
+                                    <option value="Islam">Islam</option>
+                                    <option value="Kristen">Kristen</option>
+                                    <option value="Budha">Budha</option>
+                                    <option value="Konghucu">Konghucu</option>
+                                    <option value="Katolik">Katolik</option>
+                                </select>
+                                @error('agama')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                             <div class="mb-3">
                                 <label class="form-label">Tanggal Lahir</label>
-                                <input type="date" class="form-control  @error('tanggal_lahir') is-invalid @enderror"
-                                    name="tanggal_lahir">
-                                @error('tanggal_lahir')
+                                <input type="date" class="form-control  @error('tgl_lahir') is-invalid @enderror"
+                                    name="tgl_lahir">
+                                @error('tgl_lahir')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Alamat</label>
+                                <textarea class="form-control  @error('alamat') is-invalid @enderror" name="alamat"></textarea>
+                                @error('alamat')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Pilih Data Guru</label>
+                                <select name="id_guru" class="form-control @error('id_guru') is-invalid @enderror"
+                                    id="">
+                                    @foreach ($guru as $data)
+                                        <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                    @endforeach
+                                </select>
+                                @error('id_guru')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

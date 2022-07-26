@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,8 @@ class SiswaController extends Controller
     public function create()
     {
         //
-        return view('siswa.create');
+        $guru = Guru::all();
+        return view('siswa.create', compact('guru'));
     }
 
     /**
@@ -44,17 +46,23 @@ class SiswaController extends Controller
     {
         //validasi
         $validated = $request->validate([
-            'nis'           => 'required|unique:siswas|max:255,nis'.$request->id,
-            'nama_siswa'    => 'required',
-            'alamat_siswa'  => 'required',
-            'tanggal_lahir' => 'required',
+            'nama' => 'required',
+            'nis' => 'required|unique:siswas|max:255',
+            'jenis_kelamin' => 'required',
+            'agama' => 'required',
+            'tgl_lahir' => 'required',
+            'alamat' => 'required',
+            'id_guru' => 'required',
         ]);
 
         $siswa = new Siswa();
+        $siswa->nama = $request->nama;
         $siswa->nis = $request->nis;
-        $siswa->nama_siswa = $request->nama_siswa;
-        $siswa->alamat_siswa = $request->alamat_siswa;
-        $siswa->tanggal_lahir = $request->tanggal_lahir;
+        $siswa->jenis_kelamin = $request->jenis_kelamin;
+        $siswa->agama = $request->agama;
+        $siswa->tgl_lahir = $request->tgl_lahir;
+        $siswa->alamat = $request->alamat;
+        $siswa->id_guru = $request->id_guru;
         $siswa->save();
         return redirect()->route('siswa.index')
             ->with('success', 'Data berhasil dibuat!');
@@ -81,7 +89,8 @@ class SiswaController extends Controller
     public function edit($id)
     {
         $siswa = Siswa::findOrFail($id);
-        return view('siswa.edit', compact('siswa'));
+        $guru = Guru::all();
+        return view('siswa.edit', compact('siswa', 'guru'));
 
     }
 
@@ -96,17 +105,23 @@ class SiswaController extends Controller
     {
         // Validasi
         $validated = $request->validate([
+            'nama' => 'required',
             'nis' => 'required|max:255',
-            'nama_siswa' => 'required',
-            'alamat_siswa' => 'required',
-            'tanggal_lahir' => 'required',
+            'jenis_kelamin' => 'required',
+            'agama' => 'required',
+            'tgl_lahir' => 'required',
+            'alamat' => 'required',
+            'id_guru' => 'required',
         ]);
 
         $siswa = Siswa::findOrFail($id);
+        $siswa->nama = $request->nama;
         $siswa->nis = $request->nis;
-        $siswa->nama_siswa = $request->nama_siswa;
-        $siswa->alamat_siswa = $request->alamat_siswa;
-        $siswa->tanggal_lahir = $request->tanggal_lahir;
+        $siswa->jenis_kelamin = $request->jenis_kelamin;
+        $siswa->agama = $request->agama;
+        $siswa->tgl_lahir = $request->tgl_lahir;
+        $siswa->alamat = $request->alamat;
+        $siswa->id_guru = $request->id_guru;
         $siswa->save();
         return redirect()->route('siswa.index')
             ->with('success', 'Data berhasil diedit!');
@@ -126,4 +141,3 @@ class SiswaController extends Controller
             ->with('success', 'Data berhasil dihapus!');
     }
 }
-

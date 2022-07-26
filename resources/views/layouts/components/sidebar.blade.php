@@ -53,6 +53,18 @@
                 <p>Dashboard Nilai</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('guru.index') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Dashboard Guru</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('wali.index') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Dashboard Wali</p>
+              </a>
+            </li>
           </ul>
         </li>
         {{-- <li class="nav-item">

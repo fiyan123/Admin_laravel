@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('content')
     <div class="container">
@@ -10,23 +10,32 @@
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
+                            <label class="form-label">Nama</label>
+                            <input type="text" class="form-control " name="nama" value="{{ $siswa->nama }}" readonly>
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label">Nomor Induk Siswa</label>
                             <input type="text" class="form-control " name="nis" value="{{ $siswa->nis }}" readonly>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Nama</label>
-                            <input type="text" class="form-control " name="nama_siswa" value="{{ $siswa->nama_siswa }}" readonly>
+                            <label class="form-label">Jenis Kelamin</label>
+                            <input type="text" class="form-control " name="nis" value="{{ $siswa->jenis_kelamin }}"
+                                readonly>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Alamat</label>
-                            <input type="text" class="form-control" name="alamat_siswa" value="{{ $siswa->alamat_siswa }}"
+                            <label class="form-label">Agama</label>
+                            <input type="text" class="form-control " name="nis" value="{{ $siswa->agama }}"
+                                readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Tanggal Lahir</label>
+                            <input type="text" class="form-control" name="tgl_lahir" value="{{ $siswa->tgl_lahir }}"
                                 readonly>
 
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Tanggal Lahir</label>
-                            <input type="text" class="form-control" name="tanggal_lahir" value="{{ $siswa->tanggal_lahir }}"
-                                readonly>
+                            <label class="form-label">Alamat</label>
+                            <textarea class="form-control" name="alamat" readonly>{{ $siswa->alamat }}</textarea>
 
                         </div>
                         <div class="mb-3">
